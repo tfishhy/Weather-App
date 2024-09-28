@@ -50,7 +50,8 @@ button {
 
 button:hover{
     background: #9f7acc;
-    transition: 0.3s;
+    transition: 0.5s;
+    box-shadow: 20px 20px 50px 10px pink inset;
 }
 
 #weather-info {
@@ -114,3 +115,50 @@ button:hover{
     margin-top: 10px;
 }
 
+.humidity-class {
+    display: none;
+    position: absolute;
+    left: 90px; 
+    top: 55%; 
+    transform: translateY(-50%); 
+    background: #debff4;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .humidity-class p {
+   font-size: 20px;
+  }
+
+  .humidity-class:hover{
+    background: #9f7acc;
+    transition: 0.5s;
+    cursor: pointer;
+    box-shadow: 20px 20px 50px 10px pink inset;
+  }
+
+  .humidityhover {
+    display: none; 
+    width: 80px; 
+    background-color: #debff4;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    padding: 2px 0;
+    position: absolute;
+    bottom: -60%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    opacity: 0; 
+    font-size: 16px;
+}
+
+.humidity-class:hover > .humidityhover {
+    transition: 0.5s;
+    display: block; /* Show on hover */
+    opacity: 1; /* Make it fully visible */
+}

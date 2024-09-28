@@ -41,7 +41,7 @@ function displayWeather(data){
     */
 
     const tempDivInfo = document.getElementById("temp-div");
-    const humidityDivInfo = document.getElementById("humidity-div");
+    const humidityDivInfo = document.getElementsByClassName("humidity-class")[0];
     const weatherInfoDiv = document.getElementById("weather-info");
     const weatherIcon = document.getElementById("weather-icon");
     const hourlyForecastDiv = document.getElementById("hourly-forecast");
@@ -51,7 +51,7 @@ function displayWeather(data){
     weatherInfoDiv.innerHTML = "";
     hourlyForecastDiv.innerHTML = "";
     tempDivInfo.innerHTML = "";
-
+    humidityDivInfo.innerHTML ="";
     //check if data is error
     if(data.cod === "404"){
         weatherInfoDiv.innerHTML = `<p>${data.message}</p>`
@@ -69,21 +69,30 @@ function displayWeather(data){
 
         const temperatureHTML = `<p>${temperature}°C</p>`;
 
-        const humidityHTML= `<p>Humidity: ${humidity}%</p>`
-
         const cityNameHTML = `<p><b>${cityName}<b></p>`;
 
         const weatherInfoHtml = `<p>${description}</p>`;
 
         cityNameDiv.innerHTML = cityNameHTML;
         tempDivInfo.innerHTML = temperatureHTML;
-        humidityDivInfo.innerHTML = humidityHTML;
         weatherInfoDiv.innerHTML = weatherInfoHtml;
         weatherIcon.src = iconUrl;
         weatherIcon.alt = description;
 
-        showImage();
+        //instead of changing inner html, i will make elements and insert so the tooltip can exist
+        const humidityText = document.createElement('p');
+        humidityText.textContent = `${humidity}%`;
+    
+        const tooltip = document.createElement('span');
+        tooltip.classList.add('humidityhover');
+        tooltip.textContent = "Humidity";
+    
+        // add the two elements to humidityDivInfo
+        humidityDivInfo.appendChild(humidityText);
+        humidityDivInfo.appendChild(tooltip);
 
+        showImage();
+        humidityDivInfo.style.display = "flex";
     }
 
 }
