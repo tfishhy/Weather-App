@@ -68,9 +68,7 @@ function displayWeather(data){
         const iconUrl = customIconMap[iconCode];
 
         const temperatureHTML = `<p>${temperature}°C</p>`;
-
         const cityNameHTML = `<p><b>${cityName}<b></p>`;
-
         const weatherInfoHtml = `<p>${description}</p>`;
 
         cityNameDiv.innerHTML = cityNameHTML;
