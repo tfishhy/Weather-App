@@ -10,7 +10,8 @@ body{
 
 #weather-container{
     background: rgb(255, 255, 255, 0.3);
-    max-width: 450px;
+    max-width: 750px;
+    max-height: 800px;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 8px 32px rgb(0, 0, 0, 0.1);
@@ -24,6 +25,7 @@ h2,label,p {
     margin: 8px 0;
 }
 
+
 input {
     width: calc(100% - 16px);
     padding: 8px;
@@ -31,6 +33,7 @@ input {
     border: 1px solid white;
     margin-top: 20px;
     font-size: 18px;
+    border-radius: 16px;
 }
 
 button {
@@ -70,8 +73,9 @@ button:hover{
     width: 200px;
     height: 200px;
     margin: 0 auto 10px;
-    margin-bottom: 0;
+    margin-bottom: 10px;
     display: none;
+    margin-top: -30px;
 }
 
 #hourly-forecast{
@@ -99,8 +103,8 @@ button:hover{
 }
 
 .hourly-item img{
-    height: 60px;
-    width: 60px;
+    height: 30px;
+    width: 30px;
     margin-bottom: 1px;
 }
 

@@ -65,7 +65,7 @@ function displayWeather(data){
         const humidity = data.main.humidity;
         const description = data.weather[0].description;
         const iconCode = data.weather[0].icon;
-        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@4x.png`;
+        const iconUrl = customIconMap[iconCode];
 
         const temperatureHTML = `<p>${temperature}°C</p>`;
 
@@ -98,7 +98,7 @@ function displayHourlyForecast(hourlyData){
     * add it to the hourly div and repeat till all hourly data is extracted
     */
     const hourlyForecastDiv = document.getElementById("hourly-forecast");
-    const next24Hours = hourlyData.slice(0,8); //extract first 8 items so we have 3 hour intervals
+    const next24Hours = hourlyData.slice(0,8); //extract first 8 items so we 1 day not 7
 
     //looping through each item of data and assigning it info and adding it to our forecast const
     next24Hours.forEach(item =>{
@@ -108,7 +108,7 @@ function displayHourlyForecast(hourlyData){
         const hour12 = convertTo12HourFormat(hour24); // Convert to 12-hour format DONT USE THIS IF I WANT TO USE 24 HOUR
         const temperature = Math.round(item.main.temp - 273.15);
         const iconCode = item.weather[0].icon;
-        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
+        const iconUrl = customIconMap[iconCode];
 
 
         //TO MAKE A BUTTON FOR 12/24 HOUR CLOCK MAKE AN IF AND HAVE TWO OF THESE: ONE FOR 12: OR FOR 24
@@ -151,18 +151,26 @@ function convertTo12HourFormat(hour24) {
 
     return `${hour12}:00 ${period}`; // returns the time as how i would need it to embedd into hourlyitemhtml
 }
+
 //replace file locations with custom images
 // const iconUrl = customIconMap[iconCode], then use this for finding image
-// const customIconMap = {
-//     "01d": "images/clear_sky_day.png",  // Clear sky (day)
-//     "01n": "images/clear_sky_night.png", // Clear sky (night)
-//     "02d": "images/few_clouds_day.png",  // Few clouds (day)
-//     "02n": "images/few_clouds_night.png", // Few clouds (night)
-//     "03d": "images/scattered_clouds.png", // Scattered clouds
-//     "09d": "images/shower_rain.png",     // Shower rain
-//     "10d": "images/rain_day.png",        // Rain (day)
-//     "10n": "images/rain_night.png",      // Rain (night)
-//     "11d": "images/thunderstorm.png",    // Thunderstorm
-//     "13d": "images/snow.png",            // Snow
-//     "50d": "images/mist.png"             // Mist
-// };
+
+const customIconMap = { //set as a json 
+    "01d": "images/clear_sky_day.png",  // Clear sky (day)
+    "01n": "images/clear_sky_night.png", // Clear sky (night)
+    "02d": "images/few_clouds_day.png",  // Few clouds (day)
+    "02n": "images/few_clouds_night.png", // Few clouds (night)
+    "03d": "images/scattered_clouds.png", // Scattered clouds day
+    "03n": "images/scattered_clouds.png", // Scattered clouds night
+    "04d": "images/broken_clouds.png", //broken clouds day
+    "04n": "images/broken_clouds.png", //broken clouds night
+    "09d": "images/shower_rain.png",     // Shower rain
+    "09n": "images/shower_rain.png",     // Shower rain
+    "10d": "images/rain_day.png",        // Rain (day)
+    "10n": "images/rain_night.png",      // Rain (night)
+    "11d": "images/thunderstorm_day.png",    // Thunderstorm day
+    "11n": "images/thunderstorm_night.png",    // Thunderstorm night
+    "13d": "images/snow_day.png",            // Snow day
+    "13n": "images/snow_night.png",            // Snow night 
+    "50d": "images/mist.png"             // Mist
+};
