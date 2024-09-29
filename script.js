@@ -46,12 +46,15 @@ function displayWeather(data){
     const weatherIcon = document.getElementById("weather-icon");
     const hourlyForecastDiv = document.getElementById("hourly-forecast");
     const cityNameDiv = document.getElementById("city-name");
+    const windSpeedDiv = document.getElementsByClassName("fas fa-wind")[0];
 
     //Clear previous content
     weatherInfoDiv.innerHTML = "";
     hourlyForecastDiv.innerHTML = "";
     tempDivInfo.innerHTML = "";
     humidityDivInfo.innerHTML ="";
+    windSpeedDiv.innerHTML = "";
+
     //check if data is error
     if(data.cod === "404"){
         weatherInfoDiv.innerHTML = `<p>${data.message}</p>`
@@ -66,6 +69,7 @@ function displayWeather(data){
         const description = data.weather[0].description;
         const iconCode = data.weather[0].icon;
         const iconUrl = customIconMap[iconCode];
+        const wind = data.wind.speed;
 
         const temperatureHTML = `<p>${temperature}°C</p>`;
         const cityNameHTML = `<p><b>${cityName}<b></p>`;
@@ -76,6 +80,8 @@ function displayWeather(data){
         weatherInfoDiv.innerHTML = weatherInfoHtml;
         weatherIcon.src = iconUrl;
         weatherIcon.alt = description;
+        
+        
 
         //instead of changing inner html, i will make elements and insert so the tooltip can exist
         const humidityText = document.createElement('p');
@@ -89,8 +95,23 @@ function displayWeather(data){
         humidityDivInfo.appendChild(humidityText);
         humidityDivInfo.appendChild(tooltip);
 
-        showImage();
         humidityDivInfo.style.display = "flex";
+
+
+
+
+
+        const windTooltip = document.createElement('span');
+        windTooltip.classList.add('wind_tooltip');
+        windTooltip.textContent = `Wind Speed: ${wind}`;
+
+        windSpeedDiv.appendChild(windTooltip);
+
+        windSpeedDiv.style.display = "flex";
+
+
+        showImage();
+
     }
 
 }
@@ -181,3 +202,9 @@ const customIconMap = { //set as a json
     "13n": "images/snow_night.png",            // Snow night 
     "50d": "images/mist.png"             // Mist
 };
+
+function search() {
+    if(event.key === 'Enter') {
+        getWeather();       
+    }
+}
