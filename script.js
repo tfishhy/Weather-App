@@ -29,6 +29,7 @@ function getWeather(){
             console.error("Error fetching hourly forecast data:", error); //just like catching an exception in java, if we catch error, alert user.
             alert("Error fetching hourly forecast data. Please try again");
         });
+
 }
 
 function displayWeather(data){
